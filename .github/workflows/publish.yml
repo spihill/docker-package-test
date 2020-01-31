@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
-    - name: docker-login
-      env:
-        user_name: spihill
-        token: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
-      run: docker login -u ${user_name} -p ${token} docker.pkg.github.com
-
+    - name: Build and publish
+      uses: elgohr/Publish-Docker-Github-Action@2.12
+      with:
+        name: docker.pkg.github.com/spihill/docker-package-test/gcc-5
+        username: spihill
+        password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
+        registry: docker.pkg.github.com
