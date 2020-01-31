@@ -11,6 +11,6 @@ jobs:
     - name: docker-login
       env:
         user_name: ${GITHUB_ACTOR}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: docker login -u ${user_name} -p ${GITHUB_TOKEN}
+        token: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
+      run: docker login -u ${user_name} -p ${token}
 
