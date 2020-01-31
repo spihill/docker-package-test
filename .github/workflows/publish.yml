@@ -12,5 +12,5 @@ jobs:
       env:
         user_name: spihill
         token: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
-      run: docker login -u ${user_name} -p ${token}
+      run: docker login -u ${user_name} -p ${token} docker.pkg.github.com
 
