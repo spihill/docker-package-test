@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'verify-test'
+
+jobs:
+  publish:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: verify test
+      uses: ./
+      with:
+        YOUR_GITHUB_USER_NAME: spihill
+        CLONE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        YOUR_GITHUB_REPOSITORY: library
