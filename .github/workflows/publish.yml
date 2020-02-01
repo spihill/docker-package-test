@@ -15,3 +15,4 @@ jobs:
         username: spihill
         password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
         registry: docker.pkg.github.com
+        workdir: gcc-5
