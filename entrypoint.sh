@@ -1,5 +1,9 @@
 #!/bin/bash
 
-git clone https://${YOUR_GITHUB_USER_NAME}:${CLONE_TOKEN}@github.com/${YOUR_GITHUB_USER_NAME}/${YOUR_GITHUB_REPOSITORY}.git
+# $1 username
+# $2 library_repo
+# $3 token
+
+git clone https://${1}:${3}@github.com/${1}/${2}.git
 
 cd ${2} && oj-verify run --jobs 2
