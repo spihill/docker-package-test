@@ -20,3 +20,4 @@ jobs:
         YOUR_GITHUB_USER_NAME: spihill
         CLONE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         YOUR_GITHUB_REPOSITORY: library
+        CXX: g++-5
