@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'gcc-9.2.0/**'
+
+jobs:
+  publish:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build and publish
+      uses: elgohr/Publish-Docker-Github-Action@2.12
+      with:
+        name: docker.pkg.github.com/spihill/docker-package-test/gcc-9.2.0
+        username: spihill
+        password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
+        registry: docker.pkg.github.com
+        workdir: gcc-9.2.0
