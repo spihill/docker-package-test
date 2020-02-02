@@ -2,6 +2,8 @@
 
 # $1 CXX
 
+set -eu
+
 cd /src
 g++ -dumpversion
 env CXX=${1} oj-verify run
