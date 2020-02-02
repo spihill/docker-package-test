@@ -3,7 +3,7 @@ on:
     branches:
       - master
     paths:
-      - 'test/gcc-9.2.0/**'
+      - 'test/gcc-9-2-0/**'
 
 jobs:
   run-verify:
