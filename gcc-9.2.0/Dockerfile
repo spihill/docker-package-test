@@ -11,7 +11,7 @@ RUN curl -LO https://ftp.gnu.org/gnu/gcc/gcc-9.2.0/gcc-9.2.0.tar.gz && tar xzvf 
 WORKDIR gcc-9.2.0
 RUN ./contrib/download_prerequisites && mkdir build 
 WORKDIR build
-RUN ../configure --enable-languages=c,c++ --prefix=/usr/local --disable-multilib && \
+RUN ../configure --enable-languages=c,c++ --prefix=/usr/local --disable-bootstrap --disable-multilib && \
 	make -j2 > /dev/null && make install -j2 > /dev/null
 
 FROM ubuntu:18.04
