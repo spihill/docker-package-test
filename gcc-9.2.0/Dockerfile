@@ -31,5 +31,7 @@ RUN apt update && apt install -y --no-install-recommends \
 	python3-setuptools && \
 	pip3 install wheel && \
 	pip3 install -U online-judge-verify-helper
+
 RUN rm -rf /usr/local
+
 COPY --from=builder /usr/local /usr/local/
