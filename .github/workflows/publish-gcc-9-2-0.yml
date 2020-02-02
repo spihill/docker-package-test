@@ -18,13 +18,13 @@ jobs:
         password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
         registry: docker.pkg.github.com
         workdir: gcc-9.2.0
-  verify-test:
+  image-verify:
     needs: publish
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
     - name: Docker login
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login -u spihill --password-stdin docker.pkg.github.com
+      run:  docker login -u spihill -p ${{ secrets.PACKAGES_LOGIN_TOKEN }} docker.pkg.github.com
     - name: Docker pull
       run: docker pull docker.pkg.github.com/spihill/docker-package-test/gcc-9.2.0:latest
     - name: verify test
