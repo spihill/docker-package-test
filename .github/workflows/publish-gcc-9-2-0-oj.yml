@@ -1,0 +1,34 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'gcc-9.2.0-oj/**'
+
+jobs:
+  publish-oj:
+    runs-on: ubuntu-18.04
+    needs: publish
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build and publish oj
+      uses: elgohr/Publish-Docker-Github-Action@2.12
+      with:
+        name: docker.pkg.github.com/spihill/docker-package-test/gcc-9.2.0-oj
+        username: spihill
+        password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
+        registry: docker.pkg.github.com
+        workdir: gcc-9.2.0-oj
+  image-verify-oj:
+    needs: publish-oj
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Docker login
+      run:  docker login -u spihill -p ${{ secrets.PACKAGES_LOGIN_TOKEN }} docker.pkg.github.com
+    - name: Docker pull
+      run: docker pull docker.pkg.github.com/spihill/docker-package-test/gcc-9.2.0-oj:latest
+    - name: verify test
+      uses: ./test/gcc-9-2-0-oj/
+      with:
+        CXX: g++
