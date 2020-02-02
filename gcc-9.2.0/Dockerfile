@@ -7,7 +7,7 @@ RUN apt update && apt install -y --no-install-recommends \
 	ca-certificates
 RUN mkdir -p ${HOME}/local/bin && mkdir ${HOME}/local/src
 WORKDIR ${HOME}/local/src
-RUN curl https://ftp.gnu.org/gnu/gcc/gcc-9.2.0/gcc-9.2.0.tar.gz && tar xzvf gcc-9.2.0.tar.gz
+RUN curl -LO https://ftp.gnu.org/gnu/gcc/gcc-9.2.0/gcc-9.2.0.tar.gz && tar xzvf gcc-9.2.0.tar.gz
 WORKDIR gcc-9.2.0
 RUN ./contrib/download_prerequisites && mkdir build 
 WORKDIR build
