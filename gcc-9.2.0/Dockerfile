@@ -5,6 +5,7 @@ RUN apt update && apt install -y --no-install-recommends \
 	gcc \
 	g++ \
 	wget \
+	curl \
 	git \
 	python3.7 \
 	python3-pip \
