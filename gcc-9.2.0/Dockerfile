@@ -14,9 +14,9 @@ RUN apt update && apt install -y --no-install-recommends \
 RUN mkdir -p ${HOME}/local/bin && mkdir ${HOME}/local/src 
 WORKDIR ${HOME}/local/src
 RUN wget https://ftp.gnu.org/gnu/gcc/gcc-9.2.0/gcc-9.2.0.tar.gz && tar xzvf gcc-9.2.0.tar.gz 
-WORKDIR cd gcc-9.2.0
+WORKDIR gcc-9.2.0
 RUN ./contrib/download_prerequisites && mkdir build 
-WORKDIR cd build
+WORKDIR build
 RUN ../configure --enable-languages=c,c++ --prefix=/usr/local --disable-bootstrap --disable-multilib && \
 	make -j2 > /dev/null && make install -j2 > /dev/null && \
 	rm -rf ${HOME}/local/src
