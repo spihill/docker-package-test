@@ -11,7 +11,7 @@ jobs:
     - name: Docker login
       run: docker login -u spihill -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
     - name: Docker pull
-      run: docker pull docker.pkg.github.com/spihill/docker-package-test/gcc.9.2.0:latest
+      run: docker pull docker.pkg.github.com/spihill/docker-package-test/gcc-9.2.0:latest
     - name: verify test
       uses: ./test/gcc-9-2-0/
       with:
