@@ -20,5 +20,3 @@ FROM ubuntu:18.04 as install
 RUN apt update && apt install -y --no-install-recommends g++
 RUN rm -rf /usr/local
 COPY --from=builder /usr/local /usr/local/
-
-FROM ubuntu:18.04 as install
