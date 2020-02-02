@@ -3,14 +3,20 @@ on:
     branches:
       - master
     paths:
-      - 'gcc-9.2.0/**'
-      - '!gcc-9.2.0/version'
+      - 'gcc-9.2.0/version'
 
 jobs:
   publish:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
+
+    - uses: pCYSl5EDgo/cat@1.0.0
+      id: cat-version
+      with: 
+        path: gcc-9.2.0/version
+        trim: true
+
     - name: Build and publish
       uses: elgohr/Publish-Docker-Github-Action@2.12
       with:
@@ -19,11 +25,19 @@ jobs:
         password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
         registry: docker.pkg.github.com
         workdir: gcc-9.2.0
+        tags: ${steps.cat-version.outputs.text}
   publish-oj:
     runs-on: ubuntu-18.04
     needs: publish
     steps:
     - uses: actions/checkout@v1
+
+    - uses: pCYSl5EDgo/cat@1.0.0
+      id: cat-version
+      with: 
+        path: gcc-9.2.0/version
+        trim: true
+
     - name: Build and publish oj
       uses: elgohr/Publish-Docker-Github-Action@2.12
       with:
@@ -32,6 +46,8 @@ jobs:
         password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
         registry: docker.pkg.github.com
         workdir: gcc-9.2.0-oj
+        buildargs: base_image_tag=${steps.cat-version.outputs.text}
+        tags: ${steps.cat-version.outputs.text}
   image-verify:
     needs: publish
     runs-on: ubuntu-18.04
