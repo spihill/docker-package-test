@@ -19,6 +19,7 @@ jobs:
         registry: docker.pkg.github.com
         workdir: gcc-9.2.0
   publish-oj:
+    runs-on: ubuntu-18.04
     needs: publish
     steps:
     - uses: actions/checkout@v1
@@ -44,7 +45,7 @@ jobs:
       with:
         CXX: g++
   image-verify-oj:
-    needs: publish
+    needs: publish-oj
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
