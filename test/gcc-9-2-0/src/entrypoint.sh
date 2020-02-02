@@ -5,7 +5,12 @@
 set -eu
 
 cd /src
-git init && git add . && git commit -m "a"
+git init 
+
+git config --global user.name "docker-package-test"
+git config --global user.email "docker-package-test"
+
+git add . && git commit -m "a"
 g++ -dumpversion
 export CXX=${1}
 oj-verify run
