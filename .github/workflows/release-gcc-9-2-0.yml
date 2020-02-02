@@ -25,7 +25,7 @@ jobs:
         password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
         registry: docker.pkg.github.com
         workdir: gcc-9.2.0
-        tags: ${{ steps.cat-version.outputs.text }}
+        tags: "${{ steps.cat-version.outputs.text }}"
   publish-oj:
     runs-on: ubuntu-18.04
     needs: publish
@@ -46,8 +46,8 @@ jobs:
         password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
         registry: docker.pkg.github.com
         workdir: gcc-9.2.0-oj
-        buildargs: base_image_tag=${{ steps.cat-version.outputs.text }}
-        tags: ${{ steps.cat-version.outputs.text }}
+        buildargs: "base_image_tag=${{ steps.cat-version.outputs.text }}"
+        tags: "${{ steps.cat-version.outputs.text }}"
   image-verify:
     needs: publish
     runs-on: ubuntu-18.04
