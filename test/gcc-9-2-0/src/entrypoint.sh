@@ -7,5 +7,5 @@ set -eu
 cd /src
 git init
 g++ -dumpversion
-env CXX=${1} oj-verify run
-${1} test.cpp -std=c++17 -Wall && ./a.out
+export CXX=${1}
+env -u GITHUB_TOKEN test.cpp -std=c++17 -Wall && ./a.out
