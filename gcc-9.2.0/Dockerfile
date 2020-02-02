@@ -5,6 +5,7 @@ RUN apt update && apt install -y --no-install-recommends \
 	g++ \
 	curl \
 	ca-certificates
+
 RUN mkdir -p ${HOME}/local/bin && mkdir ${HOME}/local/src
 WORKDIR ${HOME}/local/src
 RUN curl -LO https://ftp.gnu.org/gnu/gcc/gcc-9.2.0/gcc-9.2.0.tar.gz && tar xzvf gcc-9.2.0.tar.gz
