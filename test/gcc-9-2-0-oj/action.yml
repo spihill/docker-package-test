@@ -1,0 +1,12 @@
+# action.yml
+name: 'Hello World'
+description: 'test'
+inputs:
+  CXX:
+    description: 'CXX'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.CXX }}

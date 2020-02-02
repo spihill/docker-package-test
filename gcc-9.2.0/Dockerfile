@@ -14,18 +14,10 @@ WORKDIR build
 RUN ../configure --enable-languages=c,c++ --prefix=/usr/local --disable-bootstrap --disable-multilib && \
 	make -j2 > /dev/null && make install -j2 > /dev/null
 
-FROM ubuntu:18.04
+FROM ubuntu:18.04 as install
 
-RUN apt update && apt install -y --no-install-recommends \
-	curl \
-	git \
-	g++ \
-	python3.7 \
-	python3-pip \
-	python3-setuptools && \
-	pip3 install wheel && \
-	pip3 install -U online-judge-verify-helper
-
+RUN apt update && apt install -y --no-install-recommends g++
 RUN rm -rf /usr/local
-
 COPY --from=builder /usr/local /usr/local/
+
+FROM ubuntu:18.04 as install
