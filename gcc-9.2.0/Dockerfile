@@ -26,6 +26,7 @@ FROM ubuntu:18.04
 RUN apt update && apt install -y --no-install-recommends \
 	curl \
 	git \
+	g++ \
 	python3.7 \
 	python3-pip \
 	python3-setuptools && \
