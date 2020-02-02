@@ -18,5 +18,6 @@ WORKDIR gcc-9.2.0
 RUN ./contrib/download_prerequisites && mkdir build 
 WORKDIR build
 RUN ../configure --enable-languages=c,c++ --prefix=/usr/local --disable-bootstrap --disable-multilib && \
-	make -j2 > /dev/null && make install -j2 > /dev/null && \
-	rm -rf ${HOME}/local/src
+	make -j2 > /dev/null && make install -j2 > /dev/null
+WORKDIR /
+RUN rm -rf ${HOME}/local/src
