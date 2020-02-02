@@ -1,6 +1,7 @@
+ARG base_image_tag=latest
+
 FROM docker.pkg.github.com/spihill/docker-package-test/gcc-9.2.0:{base_image_tag}
 
-ARG base_image_tag=latest
 
 RUN apt update && apt install -y --no-install-recommends \
 	curl \
