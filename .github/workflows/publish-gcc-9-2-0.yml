@@ -4,6 +4,7 @@ on:
       - master
     paths:
       - 'gcc-9.2.0/**'
+      - '!gcc-9.2.0/version'
 
 jobs:
   publish:
@@ -31,6 +32,7 @@ jobs:
         password: ${{ secrets.PACKAGES_LOGIN_TOKEN }}
         registry: docker.pkg.github.com
         workdir: gcc-9.2.0-oj
+        buildargs: base_image_tag=${version}
   image-verify:
     needs: publish
     runs-on: ubuntu-18.04
